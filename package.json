@@ -1,0 +1,50 @@
+{
+  "name": "messenger-get-started",
+  "version": "1.0.0",
+  "description": "Get started example for Messenger Platform",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "lint": "jshint --exclude node_modules .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fbsamples/messenger-platform-samples.git"
+  },
+  "author": "Facebook",
+  "license": "ISC",
+  "dependencies": {
+    "api.ai": "^1.0.3",
+    "apiai": "^4.0.2",
+    "async": "^2.1.5",
+    "bingspeech-api-client": "^2.3.1",
+    "body-parser": "^1.15.0",
+    "config": "^1.20.4",
+    "download-file": "^0.1.5",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "geolib": "^2.0.22",
+    "image-downloader": "^3.2.1",
+    "jpeg-js": "^0.3.3",
+    "moment": "^2.19.1",
+    "multer": "^1.3.0",
+    "node-lame": "^1.0.6",
+    "node-php-server": "^0.1.2",
+    "node-random": "^1.0.1",
+    "node-resemble-js": "^0.2.0",
+    "node-schedule": "^1.2.5",
+    "nodemailer": "^4.0.1",
+    "recastai": "^3.1.2",
+    "request": "^2.72.0",
+    "wav-file-info": "0.0.8"
+  },
+  "engines": {
+    "node": "~4.1.2"
+  },
+  "bugs": {
+    "url": "https://github.com/fbsamples/messenger-platform-samples/issues"
+  },
+  "homepage": "https://github.com/fbsamples/messenger-platform-samples#readme",
+  "devDependencies": {}
+}

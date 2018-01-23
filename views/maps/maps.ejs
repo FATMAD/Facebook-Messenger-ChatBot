@@ -1,0 +1,965 @@
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+
+      function initMap() {
+        
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: <%= lat %>, lng: <%= lang %>},
+        });
+
+        var image = {
+          url: 'https://55877f00.ngrok.io/assets/memarker.png',
+          
+          //size: new google.maps.Size(300, 200),
+          //origin: new google.maps.Point(0, 0),
+          //anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(50, 50)
+                    };
+
+
+        var markerme = new google.maps.Marker({
+          position: {lat: <%= lat %>, lng: <%= lang %>},
+          map: map,
+          icon: image,
+          title: 'Ma position'
+        });
+
+        markerme.setMap(map);
+
+        var contentString1 = '<div style=width:auto;height:auto>'+
+        '<center>'+
+        '<img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/>'+
+        '<br/>'+
+        '<p>'+
+        '<b style=color:red;>'+
+        '<strong>'+
+        '<big>Centre d Affaires Hedi Chaker</big>'+
+        '</strong>'+
+        '</b>'+
+        '</center>'+
+        '<div style=float:left>'+
+        '<br />'+
+        '<br />'+
+        '<b>'+
+        '<strong>Adresse :</strong></b>88, Avenue Hedi Chaker 1002 – Tunis<br />'+
+        '<b>'+
+        '<strong>Chef Agence :</strong>'+
+        '</b>Mr Aymen Ben Fguir<br />'+
+        '<b>'+
+        '<strong>Email :</strong>'+
+        '</b>aymen.benfguir@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 617<b><br/><strong>Fax :</strong></b>+216 71 782 656 '+
+        '</div>'+
+        '</div>';
+
+
+        var infowindow1 = new google.maps.InfoWindow({
+          content: contentString1
+        });
+
+        var marker1 = new google.maps.Marker({
+          position: {lat: 36.817704, lng: 10.182012},
+          map: map,
+          title: 'Centre d Affaires Hedi Chaker'
+        });
+        marker1.addListener('click', function() {
+          infowindow1.open(map, marker1);
+        });
+        marker1.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker1.getPosition());
+        });
+
+
+
+
+        var contentString2 = '<div style=width:auto;height:auto>'+
+        '<center>'+
+        '<img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/>'+
+        '<br/>'+
+        '<p>'+
+        '<b style=color:red;>'+
+        '<strong>'+
+        '<big>Agence Centrale</big>'+
+        '</strong>'+
+        '</b>'+
+        '</center>'+
+        '<div style=float:left>'+
+        '<br />'+
+        '<br />'+
+        '<b>'+
+        '<strong>Adresse :</strong></b>65, Avenue Mohamed V,1002 Tunis<br />'+
+        '<b>'+
+        '<strong>Chef Agence :</strong>'+
+        '</b>Mr Slaheddine Dhouibi<br />'+
+        '<b>'+
+        '<strong>Email :</strong>'+
+        '</b>slaheddine.dhouibi@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 562 <b><br/><strong>Fax :</strong></b>+216  71 791 613 '+
+        '</div>'+
+        '</div>';
+
+
+        var infowindow2 = new google.maps.InfoWindow({
+          content: contentString2
+        });
+
+        var marker2 = new google.maps.Marker({
+          position: {lat: 36.819365, lng: 10.182424},
+          map: map,
+          title: 'Agence Centrale'
+        });
+        marker2.addListener('click', function() {
+          infowindow2.open(map, marker2);
+        });
+        marker2.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker2.getPosition());
+        });
+
+
+
+
+        var contentString3 = '<div style=width:auto;height:auto>'+
+        '<center>'+
+        '<img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/>'+
+        '<br/>'+
+        '<p>'+
+        '<b style=color:red;>'+
+        '<strong>'+
+        '<big>Agence Hammamet</big>'+
+        '</strong>'+
+        '</b>'+
+        '</center>'+
+        '<div style=float:left>'+
+        '<br />'+
+        '<br />'+
+        '<b>'+
+        '<strong>Adresse :</strong></b>Avenue Habib Bourguiba, Hammamet- Nabeul 8050<br />'+
+        '<b>'+
+        '<strong>Chef Agence :</strong>'+
+        '</b>Mr Mejdi Azouz<br />'+
+        '<b>'+
+        '<strong>Email :</strong>'+
+        '</b>Mejdi.AZOUZ@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 626 <b><br/><strong>Fax :</strong></b>+216 72 261 319'+
+        '</div>'+
+        '</div>';
+
+
+        var infowindow3 = new google.maps.InfoWindow({
+          content: contentString3
+        });
+
+        var marker3 = new google.maps.Marker({
+          position: {lat: 36.4049468, lng: 10.6124814},
+          map: map,
+          title: 'Agence Hammamet'
+        });
+        marker3.addListener('click', function() {
+          infowindow3.open(map, marker3);
+        });
+        marker3.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker3.getPosition());
+        });
+
+
+
+        var contentString4 = '<div style=width:auto;height:auto>'+
+        '<center>'+
+        '<img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/>'+
+        '<br/>'+
+        '<p>'+
+        '<b style=color:red;>'+
+        '<strong>'+
+        '<big>Agence Mghira</big>'+
+        '</strong>'+
+        '</b>'+
+        '</center>'+
+        '<div style=float:left>'+
+        '<br />'+
+        '<br />'+
+        '<b>'+
+        '<strong>Adresse :</strong></b>Centre de vie, Zone Industrielle Avenue de Tunis, El Mghira 3, Fouchana- 2082<br />'+
+        '<b>'+
+        '<strong>Chef Agence :</strong>'+
+        '</b>Mr Nasreddine Dekli<br />'+
+        '<b>'+
+        '<strong>Email :</strong>'+
+        '</b>NASSREDINE.DEKLI@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 802<b><br/><strong>Fax :</strong></b>+216 79 408 810'+
+        '</div>'+
+        '</div>';
+
+
+        var infowindow4 = new google.maps.InfoWindow({
+          content: contentString4
+        });
+
+        var marker4 = new google.maps.Marker({
+          position: {lat: 36.7172989, lng: 10.1777263},
+          map: map,
+          title: 'Agence Mghira'
+        });
+        marker4.addListener('click', function() {
+          infowindow4.open(map, marker4);
+        });
+        marker4.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker4.getPosition());
+        });
+
+
+        var contentString5 = '<div style=width:auto;height:auto>'+
+        '<center>'+
+        '<img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/>'+
+        '<br/>'+
+        '<p>'+
+        '<b style=color:red;>'+
+        '<strong>'+
+        '<big>Agence Ezzitouna</big>'+
+        '</strong>'+
+        '</b>'+
+        '</center>'+
+        '<div style=float:left>'+
+        '<br />'+
+        '<br />'+
+        '<b>'+
+        '<strong>Adresse :</strong></b>106 -108 Rue Jemaa Ezzitouna Tunis 1008<br />'+
+        '<b>'+
+        '<strong>Chef Agence :</strong>'+
+        '</b>Mr Taoufik Bakali<br />'+
+        '<b>'+
+        '<strong>Email :</strong>'+
+        '</b>taoufik.bakali@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 547<b><br/><strong>Fax :</strong></b>+216 71 200 948'+
+        '</div>'+
+        '</div>';
+
+
+        var infowindow5 = new google.maps.InfoWindow({
+          content: contentString5
+        });
+
+        var marker5 = new google.maps.Marker({
+          position: {lat: 36.797494, lng: 10.171687},
+          map: map,
+          title: 'Agence Ezzitouna'
+        });
+        marker5.addListener('click', function() {
+          infowindow5.open(map, marker5);
+        });
+        marker5.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker5.getPosition());
+        });
+
+
+
+        var contentString6 = '<div style=width:auto;height:auto>'+
+        '<center>'+
+        '<img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/>'+
+        '<br/>'+
+        '<p>'+
+        '<b style=color:red;>'+
+        '<strong>'+
+        '<big>Agence Menzeh1</big>'+
+        '</strong>'+
+        '</b>'+
+        '</center>'+
+        '<div style=float:left>'+
+        '<br />'+
+        '<br />'+
+        '<b>'+
+        '<strong>Adresse :</strong></b>54, Avenue Charles Nicole 1004 – Tunis<br />'+
+        '<b>'+
+        '<strong>Chef Agence :</strong>'+
+        '</b>Mme Sonia Fejjari<br />'+
+        '<b>'+
+        '<strong>Email :</strong>'+
+        '</b>sonia.fejjari@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 641<b><br/><strong>Fax :</strong></b>+216 71 844 702'+
+        '</div>'+
+        '</div>';
+
+
+        var infowindow6 = new google.maps.InfoWindow({
+          content: contentString6
+        });
+
+        var marker6 = new google.maps.Marker({
+          position: {lat: 36.832662, lng: 10.179966},
+          map: map,
+          title: 'Agence Menzeh1'
+        });
+        marker6.addListener('click', function() {
+          infowindow6.open(map, marker6);
+        });
+        marker6.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker6.getPosition());
+        });
+
+
+        var contentString7 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Aouina</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue Monji Slim- Aouina - La Goulette -Tunis<br /> <b><strong>Chef Agence :</strong></b>Mr Ahmed Anis Mansour<br /> <b><strong>Email :</strong></b>AHMEDANIS.MANSOUR@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 739<b><br/><strong>Fax :</strong></b>+216 70 943 943</div></div>';
+
+
+        var infowindow7 = new google.maps.InfoWindow({
+          content: contentString7
+        });
+
+        var marker7 = new google.maps.Marker({
+          position: {lat: 36.854253, lng: 10.257191},
+          map: map,
+          title: 'Agence Aouina'
+        });
+        marker7.addListener('click', function() {
+          infowindow7.open(map, marker7);
+        });
+        marker7.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker7.getPosition());
+        });
+
+
+
+        var contentString8 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Ksar Hlel</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue Habib Bourguiba, Ksar Hlel - Monastir 5070<br /> <b><strong>Chef Agence :</strong></b>Mr Mourad Laabidi<br /> <b><strong>Email :</strong></b>mourad.laabidi@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+21671 186 738<b><br/><strong>Fax :</strong></b>+216 73 587 222  </div></div>';
+
+
+        var infowindow8 = new google.maps.InfoWindow({
+          content: contentString8
+        });
+
+        var marker8 = new google.maps.Marker({
+          position: {lat: 35.650848, lng: 10.882687},
+          map: map,
+          title: 'Agence Ksar Hlel'
+        });
+        marker8.addListener('click', function() {
+          infowindow8.open(map, marker8);
+        });
+        marker8.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker8.getPosition());
+        });
+
+
+
+        var contentString9 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence  du Lac</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Rue Turkana Residence les lilas – Al Bouhaira Tunis 1053<br /> <b><strong>Chef Agence :</strong></b>Mr Kais Aouieb<br /> <b><strong>Email :</strong></b>KAIS.AOUAIEB@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 742<b><br/><strong>Fax :</strong></b>+216 71 861 543</div></div>';
+
+
+        var infowindow9 = new google.maps.InfoWindow({
+          content: contentString9
+        });
+
+        var marker9 = new google.maps.Marker({
+          position: {lat: 36.83353, lng: 10.237586},
+          map: map,
+          title: 'Agence  du Lac'
+        });
+        marker9.addListener('click', function() {
+          infowindow9.open(map, marker9);
+        });
+        marker9.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker9.getPosition());
+        });
+
+        var contentString10 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Lac II</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Résidence Wafa, Avenue de La Bourse, Les Berges du Lac 2, La Marsa - 1053<br /> <b><strong>Chef Agence :</strong></b>Mme Dorra Fakhfakh<br /> <b><strong>Email :</strong></b>dorra.fakhfakh@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>216 71 186 752<b><br/><strong>Fax :</strong></b>+216 71 190 053</div></div>';
+
+
+        var infowindow10 = new google.maps.InfoWindow({
+          content: contentString10
+        });
+
+        var marker10 = new google.maps.Marker({
+          position: {lat: 36.8439737, lng: 10.2753325},
+          map: map,
+          title: 'Agence Lac II'
+        });
+        marker10.addListener('click', function() {
+          infowindow10.open(map, marker10);
+        });
+        marker10.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker10.getPosition());
+        });
+
+
+
+         var contentString11 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Ariana</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue Habib Bourguiba, 2080-Ariana<br /> <b><strong>Chef Agence :</strong></b>Mr Ramzi Gharred<br /> <b><strong>Email :</strong></b>ramzi.gharred@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 632<b><br/><strong>Fax :</strong></b>+216 71 703 003</div></div>';
+
+
+        var infowindow11 = new google.maps.InfoWindow({
+          content: contentString11
+        });
+
+        var marker11 = new google.maps.Marker({
+          position: {lat: 36.8555701, lng: 10.1882985},
+          map: map,
+          title: 'Agence Ariana'
+        });
+        marker11.addListener('click', function() {
+          infowindow11.open(map, marker11);
+        });
+        marker11.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker11.getPosition());
+        });
+
+
+
+
+
+
+        var contentString12 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Manouba</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>7, Avenue Habib Thameur 2010 Manouba<br /> <b><strong>Chef Agence :</strong></b>Mr Lazhar Ben Ghorbal<br /> <b><strong>Email :</strong></b>LAZHAR.BENGHORBAL@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 681<b><br/><strong>Fax :</strong></b>+216 71 609 521</div></div>';
+
+
+        var infowindow12 = new google.maps.InfoWindow({
+          content: contentString12
+        });
+
+        var marker12 = new google.maps.Marker({
+          position: {lat: 36.809572, lng: 10.091122},
+          map: map,
+          title: 'Agence Manouba'
+        });
+        marker12.addListener('click', function() {
+          infowindow12.open(map, marker12);
+        });
+        marker12.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker12.getPosition());
+        });
+
+
+
+        var contentString13 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Manouba</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>7, Avenue Habib Thameur 2010 Manouba<br /> <b><strong>Chef Agence :</strong></b>Mr Lazhar Ben Ghorbal<br /> <b><strong>Email :</strong></b>LAZHAR.BENGHORBAL@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 681<b><br/><strong>Fax :</strong></b>+216 71 609 521</div></div>';
+
+
+        var infowindow13 = new google.maps.InfoWindow({
+          content: contentString13
+        });
+
+        var marker13 = new google.maps.Marker({
+          position: {lat: 36.809572, lng: 10.091122},
+          map: map,
+          title: 'Agence Manouba'
+        });
+        marker13.addListener('click', function() {
+          infowindow13.open(map, marker13);
+        });
+        marker13.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker13.getPosition());
+        });
+
+
+
+        var contentString14 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Megrine</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>El Mootez Building GP1- Km 5, Megrine Riadh 2014- Ben Arous<br /> <b><strong>Chef Agence :</strong></b>Mr Abdelkarim Hamrouni<br /> <b><strong>Email :</strong></b>abdelkerim.hamrouni@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 692<b><br/><strong>Fax :</strong></b>+216 71 426 617</div></div>';
+
+
+        var infowindow14 = new google.maps.InfoWindow({
+          content: contentString14
+        });
+
+        var marker14 = new google.maps.Marker({
+          position: {lat: 36.765389, lng: 10.223752},
+          map: map,
+          title: 'Agence Megrine'
+        });
+        marker14.addListener('click', function() {
+          infowindow14.open(map, marker14);
+        });
+        marker14.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker14.getPosition());
+        });
+
+
+        var contentString15 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Sousse</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue Taib Mehiri, Route de la Corniche, Imm Hassayoune, Sousse<br /> <b><strong>Chef Agence :</strong></b>Mme Monia Bouraoui Bahri<br /> <b><strong>Email :</strong></b>monia.bouraoui.@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 762 <b><br/><strong>Fax :</strong></b>+216 73 201 022</div></div>';
+
+
+        var infowindow15 = new google.maps.InfoWindow({
+          content: contentString15
+        });
+
+        var marker15 = new google.maps.Marker({
+          position: {lat: 35.839912, lng: 10.623639},
+          map: map,
+          title: 'Agence Sousse'
+        });
+        marker15.addListener('click', function() {
+          infowindow15.open(map, marker15);
+        });
+        marker15.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker15.getPosition());
+        });
+
+
+        var contentString16 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Bizerte</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>rue 1 mai  7000 Bizerte<br /> <b><strong>Chef Agence :</strong></b>Mr Fethi Saidani<br /> <b><strong>Email :</strong></b>fethi.saidani@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 706<b><br/><strong>Fax :</strong></b>+216 72 438 478</div></div>';
+
+
+        var infowindow16 = new google.maps.InfoWindow({
+          content: contentString16
+        });
+
+        var marker16 = new google.maps.Marker({
+          position: {lat: 37.270224, lng: 9.875492},
+          map: map,
+          title: 'Agence Bizerte'
+        });
+        marker16.addListener('click', function() {
+          infowindow16.open(map, marker16);
+        });
+        marker16.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker16.getPosition());
+        });
+
+
+        var contentString17 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Moknine</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue Habib Bourguiba- 5050 Moknine<br /> <b><strong>Chef Agence :</strong></b>Mr Salah Ben Rejeb<br /> <b><strong>Email :</strong></b>SALAH.BENRAJAB@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 723<b><br/><strong>Fax :</strong></b>+216 73 474 300</div></div>';
+
+
+        var infowindow17 = new google.maps.InfoWindow({
+          content: contentString17
+        });
+
+        var marker17 = new google.maps.Marker({
+          position: {lat: 35.6333909, lng: 10.8983819},
+          map: map,
+          title: 'Agence Moknine'
+        });
+        marker17.addListener('click', function() {
+          infowindow17.open(map, marker17);
+        });
+        marker17.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker17.getPosition());
+        });
+
+
+
+
+        var contentString18 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Sfax Bab Bhar</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>6, Rue Dag Hammarksjold Sfax 3000<br /> <b><strong>Chef Agence :</strong></b>Mme Sihem Koubaa<br /> <b><strong>Email :</strong></b>sihem.koubaa@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 782<b><br/><strong>Fax :</strong></b>+216 74 296 402</div></div>';
+
+
+        var infowindow18 = new google.maps.InfoWindow({
+          content: contentString18
+        });
+
+        var marker18 = new google.maps.Marker({
+          position: {lat: 34.73299, lng: 10.76143},
+          map: map,
+          title: 'Agence Sfax Bab Bhar'
+        });
+        marker18.addListener('click', function() {
+          infowindow18.open(map, marker18);
+        });
+        marker18.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker18.getPosition());
+        });
+
+
+
+
+
+
+        var contentString19 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Kairouan</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Rue Taieb M’hiri et rue khawarizmi- 3100 Kairouan<br /> <b><strong>Chef Agence :</strong></b>Mr Mohamed Maaloul<br /> <b><strong>Email :</strong></b>mohamed.maaloul@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 713<b><br/><strong>Fax :</strong></b>+216 77 236 777</div></div>';
+
+
+        var infowindow19 = new google.maps.InfoWindow({
+          content: contentString19
+        });
+
+        var marker19 = new google.maps.Marker({
+          position: {lat: 35.6762804, lng: 10.1006627},
+          map: map,
+          title: 'Agence Kairouan'
+        });
+        marker19.addListener('click', function() {
+          infowindow19.open(map, marker19);
+        });
+        marker19.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker19.getPosition());
+        });
+
+
+
+
+
+         var contentString20 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Sfax Al Jadida</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue des Martyrs Imm. Palmarium Sfax 3000<br /> <b><strong>Chef Agence :</strong></b>Mme.Sondes Ben Ayed<br /> <b><strong>Email :</strong></b>sondes.benayed@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 791<b><br/><strong>Fax :</strong></b>+216 74 404 994</div></div>';
+
+
+        var infowindow20 = new google.maps.InfoWindow({
+          content: contentString20
+        });
+
+        var marker20 = new google.maps.Marker({
+          position: {lat: 34.736717, lng: 10.75533},
+          map: map,
+          title: 'Agence Sfax Al Jadida'
+        });
+        marker20.addListener('click', function() {
+          infowindow20.open(map, marker20);
+        });
+        marker20.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker20.getPosition());
+        });
+
+
+
+        var contentString21 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Gabes</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Rue Ali Ben Khlifa – 6000 Gabès<br /> <b><strong>Chef Agence :</strong></b>Mr Nizar Othmen<br /> <b><strong>Email :</strong></b>Nizar.Othman@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 186 733<b><br/><strong>Fax :</strong></b>+216 75 238 405</div></div>';
+
+
+        var infowindow21 = new google.maps.InfoWindow({
+          content: contentString21
+        });
+
+        var marker21 = new google.maps.Marker({
+          position: {lat: 33.884584, lng: 10.100870},
+          map: map,
+          title: 'Agence Gabes'
+        });
+        marker21.addListener('click', function() {
+          infowindow21.open(map, marker21);
+        });
+        marker21.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker21.getPosition());
+        });
+
+
+
+
+        var contentString22 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Hammamlif</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Route Nationale N1, HammamLif - Ben Arous - 2050<br /> <b><strong>Chef Agence :</strong></b>Mr Montacer Rabeh <br /> <b><strong>Email :</strong></b>rabeh.montacer@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 011<b><br/><strong>Fax :</strong></b>+216 71 210 136</div></div>';
+
+
+        var infowindow22 = new google.maps.InfoWindow({
+          content: contentString22
+        });
+
+        var marker22 = new google.maps.Marker({
+          position: {lat: 36.731910, lng: 10.327400},
+          map: map,
+          title: 'Agence Hammamlif'
+        });
+        marker22.addListener('click', function() {
+          infowindow22.open(map, marker22);
+        });
+        marker22.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker22.getPosition());
+        });
+
+
+
+        var contentString23 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Nabeul</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue de la république - Nabeul - 8000 - <br /> <b><strong>Chef Agence :</strong></b>Mr Sami Chiha<br /> <b><strong>Email :</strong></b>sami.chiha@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 018<b><br/><strong>Fax :</strong></b>+216 72 272 372</div></div>';
+
+
+        var infowindow23 = new google.maps.InfoWindow({
+          content: contentString23
+        });
+
+        var marker23 = new google.maps.Marker({
+          position: {lat: 36.456054, lng: 10.731544},
+          map: map,
+          title: 'Agence Nabeul'
+        });
+        marker23.addListener('click', function() {
+          infowindow23.open(map, marker23);
+        });
+        marker23.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker23.getPosition());
+        });
+
+
+
+
+
+        var contentString24 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Le Kram</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>200, Avenue Habib Bourguiba, Le Kram<br /> <b><strong>Chef Agence :</strong></b>Mr Mohamed Yassine Afifi<br /> <b><strong>Email :</strong></b>Mohamedyassine.Afifi@AlbarakaBank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 024<b><br/><strong>Fax :</strong></b>+216 71 275 395</div></div>';
+
+
+        var infowindow24 = new google.maps.InfoWindow({
+          content: contentString24
+        });
+
+        var marker24 = new google.maps.Marker({
+          position: {lat: 36.830131, lng: 10.314062},
+          map: map,
+          title: 'Agence Le Kram'
+        });
+        marker24.addListener('click', function() {
+          infowindow24.open(map, marker24);
+        });
+        marker24.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker24.getPosition());
+        });
+
+
+
+        var contentString25 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Msaken</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue Taieb Hachicha, Msaken - 4070<br /> <b><strong>Chef Agence :</strong></b>Mr Mohamed Elyes Belhadj<br /> <b><strong>Email :</strong></b>mohamedelyes.belhaj@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 031<b><br/><strong>Fax :</strong></b>+216 73 265 566</div></div>';
+
+
+        var infowindow25 = new google.maps.InfoWindow({
+          content: contentString25
+        });
+
+        var marker25 = new google.maps.Marker({
+          position: {lat: 35.734026, lng: 10.575850},
+          map: map,
+          title: 'Agence Msaken'
+        });
+        marker25.addListener('click', function() {
+          infowindow25.open(map, marker25);
+        });
+        marker25.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker25.getPosition());
+        });
+
+
+
+
+        var contentString26 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Djerba</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Rue Salah Ben Youssef, Midoune - Djerba<br /> <b><strong>Chef Agence :</strong></b>Mr Noamen Ben Terdayet<br /> <b><strong>Email :</strong></b>noamen.benterdayet@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 040<b><br/><strong>Fax :</strong></b>+216 75 734 952</div></div>';
+
+
+        var infowindow26 = new google.maps.InfoWindow({
+          content: contentString26
+        });
+
+        var marker26 = new google.maps.Marker({
+          position: {lat: 33.809732, lng: 10.991644},
+          map: map,
+          title: 'Agence Djerba'
+        });
+        marker26.addListener('click', function() {
+          infowindow26.open(map, marker26);
+        });
+        marker26.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker26.getPosition());
+        });
+
+
+
+
+        var contentString27 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Béja</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue de la république, 9000 - Beja <br /> <b><strong>Chef Agence :</strong></b>Mr Aymen Barhoumi<br /> <b><strong>Email :</strong></b>aymen.barhoumi@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 047<b><br/><strong>Fax :</strong></b> +216 78 459 503</div></div>';
+
+
+        var infowindow27 = new google.maps.InfoWindow({
+          content: contentString27
+        });
+
+        var marker27 = new google.maps.Marker({
+          position: {lat: 36.722619, lng: 9.189502},
+          map: map,
+          title: 'Agence Béja'
+        });
+        marker27.addListener('click', function() {
+          infowindow27.open(map, marker27);
+        });
+        marker27.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker27.getPosition());
+        });
+
+
+
+
+        var contentString28 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Monastir</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Avenue Taieb Mhiri, Monastir<br /> <b><strong>Chef Agence :</strong></b>Mme Najeh Chikhaoui <br /> <b><strong>Email :</strong></b>najeh.chikhaoui@albarakabank.com.tn  <br /> <b><strong>Tel :</strong></b>+216 71 187 054<b><br/><strong>Fax :</strong></b>+216 73 425 688</div></div>';
+
+
+        var infowindow28 = new google.maps.InfoWindow({
+          content: contentString28
+        });
+
+        var marker28 = new google.maps.Marker({
+          position: {lat: 35.768651, lng: 10.820068},
+          map: map,
+          title: 'Agence Monastir'
+        });
+        marker28.addListener('click', function() {
+          infowindow28.open(map, marker28);
+        });
+        marker28.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker28.getPosition());
+        });
+
+
+
+
+
+
+        var contentString29 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence  Sfax Lafrane</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Route Lafrane , Km 3 - 3062 - Sfax<br /> <b><strong>Chef Agence :</strong></b>Mr Faiçal Sghari <br /> <b><strong>Email :</strong></b>faycel.sghari@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 057<b><br/><strong>Fax :</strong></b>+216 74 619 848</div></div>';
+
+
+        var infowindow29 = new google.maps.InfoWindow({
+          content: contentString29
+        });
+
+        var marker29 = new google.maps.Marker({
+          position: {lat: 34.757776, lng: 10.734058},
+          map: map,
+          title: 'Agence  Sfax Lafrane'
+        });
+        marker29.addListener('click', function() {
+          infowindow29.open(map, marker29);
+        });
+        marker29.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker29.getPosition());
+        });
+        
+
+
+
+        var contentString30 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Mahdia</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b> Avenue Tahar Sfar La Corniche, 5100 - Mahdia <br /> <b><strong>Chef Agence :</strong></b>Mr Sami Mbarek<br /> <b><strong>Email :</strong></b>salem.bennasr@albarakabank.com.tn <br /> <b><strong>Tel :</strong></b>+216 71 187 069<b><br/><strong>Fax :</strong></b>+216 73 654 058</div></div>';
+
+
+        var infowindow30 = new google.maps.InfoWindow({
+          content: contentString30
+        });
+
+        var marker30 = new google.maps.Marker({
+          position: {lat: 35.511039, lng: 11.052329},
+          map: map,
+          title: 'Agence Mahdia'
+        });
+        marker30.addListener('click', function() {
+          infowindow30.open(map, marker30);
+        });
+        marker30.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker30.getPosition());
+        });
+
+
+
+        var contentString31 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Sfax Route Gremda</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Route Gremda Km4<br /> <b><strong>Chef Agence :</strong></b>Mr Habib Baccar<br /> <b><strong>Email :</strong></b>habib.baccar@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 063<b><br/><strong>Fax :</strong></b>+216 74 660 550</div></div>';
+
+
+        var infowindow31 = new google.maps.InfoWindow({
+          content: contentString31
+        });
+
+        var marker31 = new google.maps.Marker({
+          position: {lat: 34.8151854, lng: 10.6874593},
+          map: map,
+          title: 'Agence Sfax Route Gremda'
+        });
+        marker31.addListener('click', function() {
+          infowindow31.open(map, marker31);
+        });
+        marker31.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker31.getPosition());
+        });
+
+
+
+          var contentString32 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Sfax Route Mahdia</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Route Mahdia km 2 - Sfax 3099<br /> <b><strong>Chef Agence :</strong></b>Mr Moez Ellouze<br /> <b><strong>Email :</strong></b>moez.ellouze@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 075<b><br/><strong>Fax :</strong></b>+216 74 444 433</div></div>';
+
+
+        var infowindow32 = new google.maps.InfoWindow({
+          content: contentString32
+        });
+
+        var marker32 = new google.maps.Marker({
+          position: {lat: 34.752296, lng: 10.768488},
+          map: map,
+          title: 'Agence Sfax Route Mahdia'
+        });
+        marker32.addListener('click', function() {
+          infowindow32.open(map, marker32);
+        });
+        marker32.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker32.getPosition());
+        });
+
+
+
+          var contentString33 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Bardo</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>66 Avenue Habib Bourguiba - Le Bardo – Tunis<br /> <b><strong>Chef Agence :</strong></b>Mr Rached Ghabri<br /> <b><strong>Email :</strong></b>rached.ghabri@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 095<b><br/><strong>Fax :</strong></b>-</div></div>';
+
+
+        var infowindow33 = new google.maps.InfoWindow({
+          content: contentString33
+        });
+
+        var marker33 = new google.maps.Marker({
+          position: {lat: 36.813064, lng: 10.145562},
+          map: map,
+          title: 'Agence Bardo'
+        });
+        marker33.addListener('click', function() {
+          infowindow33.open(map, marker33);
+        });
+        marker33.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker33.getPosition());
+        });
+
+
+
+
+        var contentString34 = '<div style=width:auto;height:auto><center><img src=https://55877f00.ngrok.io/assets/alabarakagence.png width=164/><br/><p><b style=color:red;><strong><big>Agence Sfax Route Manzel Chaker</big></strong></b></center><div style=float:left><br /><br /><b><strong>Adresse :</strong></b>Route Menzel Chaker km 3.5 – Sfax <br /> <b><strong>Chef Agence :</strong></b>Mr Abdelmonem Masmoudi<br /> <b><strong>Email :</strong></b>abdelmonem.masmoudi@albarakabank.com.tn<br /> <b><strong>Tel :</strong></b>+216 71 187 088<b><br/><strong>Fax :</strong></b>+216 74 620 466</div></div>';
+
+
+        var infowindow34 = new google.maps.InfoWindow({
+          content: contentString34
+        });
+
+        var marker34 = new google.maps.Marker({
+          position: {lat: 34.750893, lng: 10.716839},
+          map: map,
+          title: 'Agence Sfax Route Manzel Chaker'
+        });
+        marker34.addListener('click', function() {
+          infowindow34.open(map, marker34);
+        });
+        marker34.addListener('click', function() {
+          map.setZoom(13);
+          map.setCenter(marker34.getPosition());
+        });
+
+
+
+
+
+
+      }
+    </script>
+
+     <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2vCtuq8g2BBr0c_wYsRuvQtZd_ShdSoA&callback=initMap">
+    </script>
+  </body>
+</html>
