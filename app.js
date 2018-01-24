@@ -472,10 +472,10 @@ console.log("\n\n audio received :)\n\n ")
   {
     console.log("echo");
   }*/
-  else if (quickReply) {
+else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
 
-   if  (quickReplyPayload=='Programmespayload')
+   if  (quickReplyPayload=='ProgrammesPayload')
     {
 
       async.series([
@@ -644,6 +644,118 @@ else if  (payload == 'ProgrammesPayload')
         });
     }
     /*event */
+else if (payload =='FULLTIMEProgramSessionsPayload'){
+   async.series([
+        function(callback){
+
+            sendTextMessage(senderID, "IL y a trois sessions ");
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          },
+         
+          function(callback){
+
+          sendGenericMessageFullTime(senderID);
+
+                     setTimeout(function(){
+                     callback(null, 2);
+                }, 1000);
+          }
+
+
+        ], function(error, results) {
+          console.log(results);
+        });
+
+}
+else if (payload =='KidsSessionsPayload'){
+   async.series([
+        function(callback){
+
+            sendTextMessage(senderID, "IL y a trois sessions ");
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          },
+         
+          function(callback){
+
+          sendGenericMessageKidsSession(senderID);
+
+                     setTimeout(function(){
+                     callback(null, 2);
+                }, 1000);
+          }
+
+
+        ], function(error, results) {
+          console.log(results);
+        });
+
+}       
+else if (payload =='PartTimeCodingSessionsPayload'){
+   async.series([
+        function(callback){
+
+            sendTextMessage(senderID, "IL y a trois Quatre session part time");
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          },
+         
+          function(callback){
+
+          sendGenericMessagePartTime(senderID);
+
+                     setTimeout(function(){
+                     callback(null, 2);
+                }, 1000);
+          }
+
+
+        ], function(error, results) {
+          console.log(results);
+        });
+
+}
+else if (payload =='SummerAcademySessionsPayload'){
+   async.series([
+        function(callback){
+
+            sendTextMessage(senderID, "IL y a trois sessions ");
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          },
+         
+          function(callback){
+
+          sendGenericMessageFullTime(senderID);
+
+                     setTimeout(function(){
+                     callback(null, 2);
+                }, 1000);
+          }
+
+
+        ], function(error, results) {
+          console.log(results);
+        });
+
+}              
 
 else if  (payload == 'EventsPayload')
     {
@@ -989,7 +1101,7 @@ function sendQuickReplyoperation(recipientId) {
 }
 
 function sendGenericMessagePrograms(recipientId) {
-  var messageData = {
+   var messageData = {
     recipient: {
       id: recipientId
     },
@@ -1005,15 +1117,12 @@ function sendGenericMessagePrograms(recipientId) {
             image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
             buttons: [{
               type: "web_url",
-              url: "https://gomycode.tn/full-time",
-              title: "Open Web URL",
-              webview_height_ratio: "TALL"
+              url: "https://gomycode.tn/kids",
+              title: "En savoir plus"
             },{
-              type: "web_url",
-              url: "https://gomycode.tn/full-time#apply",
-              title: "Inscription",
-              webview_height_ratio: "TALL"
-
+              type: "postback",
+              payload: "FULLTIMEProgramSessionsPayload",
+              title: "Sessions Full time"
             }, {
               type:"element_share"
               
@@ -1025,30 +1134,29 @@ function sendGenericMessagePrograms(recipientId) {
             image_url: "https://images.trueafrica.co/Go-my-code-school-at-Cogite1-2000x1333.jpg",
             buttons: [{
               type: "web_url",
-              url: "https://gomycode.tn/part-time",
-              title: "Open Web URL"
+              url: "https://gomycode.tn/kids",
+              title: "En savoir plus"
             },{
-              type: "web_url",
-              url: "https://gomycode.tn/full-time#apply",
-              title: "Inscription"
-            },{
-            
+              type: "postback",
+              payload: "PartTimeCodingSessionsPayload",
+              title: "Sessions Part time"
+            }, {
               type:"element_share"
               
             }]
           },  {
             title: "Summer Academy",
             subtitle: "Profitez des vacances d'été pour apprendre à coder",
-            item_url: "https://gomycode.tn/summer-academy",               
+            //item_url: "https://gomycode.tn/summer-academy",               
             image_url: "https://images.trueafrica.co/Go-my-code-school-at-Cogite1-2000x1333.jpg",
             buttons: [{
               type: "web_url",
-              url: "https://gomycode.tn/summer-academy",
-              title: "Open Web URL"
+              url: "https://gomycode.tn/kids",
+              title: "En savoir plus"
             },{
-              type: "web_url",
-              url: "https://gomycode.tn/full-time#apply",
-              title: "Inscription"
+              type: "postback",
+              payload: "SummerAcademySessionsPayload",
+              title: "Sessions Summer"
             }, {
               type:"element_share"
               
@@ -1061,6 +1169,75 @@ function sendGenericMessagePrograms(recipientId) {
             buttons: [{
               type: "web_url",
               url: "https://gomycode.tn/kids",
+              title: "En savoir plus"
+            },{
+              type: "postback",
+              payload: "KidsSessionsPayload",
+              title: "Sessions Kids"
+            }, {
+              type:"element_share"
+              
+            }]
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+/*full time session */
+function sendGenericMessageFullTime(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type:"generic",
+          elements: [{
+            title: "Full Stack js ",
+            subtitle: "Deviens développeur web fullstack js",
+            item_url: "https://gomycode.tn/game",               
+            image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time#apply",
+              title: "Inscription"
+            }, {
+              type:"element_share"
+              
+            }],
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+/*part time session */
+
+function sendGenericMessagePartTime(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type:"generic",
+          elements: [{
+            title: "Game",
+            subtitle: "Deviens développeur web fullstack js",
+            item_url: "https://gomycode.tn/game",               
+            image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time",
               title: "Open Web URL"
             },{
               type: "web_url",
@@ -1070,6 +1247,132 @@ function sendGenericMessagePrograms(recipientId) {
               type:"element_share"
               
             }],
+          }, {
+            title: "web",
+            subtitle: "Une opportunité unique pour apprendre à coder durant les weekends",
+            item_url: "https://gomycode.tn/part-time",               
+            image_url: "https://images.trueafrica.co/Go-my-code-school-at-Cogite1-2000x1333.jpg",
+            buttons: [{
+              type: "web_url",
+              url: "https://gomycode.tn/web",
+              title: "Open Web URL"
+            },{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time#apply",
+              title: "Inscription"
+            },{
+            
+              type:"element_share"
+              
+            }]
+          },  {
+            title: "Mobile",
+            subtitle: "Profitez des vacances d'été pour apprendre à coder",
+            item_url: "https://gomycode.tn/summer-academy",               
+            image_url: "https://images.trueafrica.co/Go-my-code-school-at-Cogite1-2000x1333.jpg",
+            buttons: [{
+              type: "web_url",
+              url: "https://gomycode.tn/app",
+              title: "Open Web URL"
+            },{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time#apply",
+              title: "Inscription"
+            }, {
+              type:"element_share"
+              
+            }],
+          }, {
+            title: "AI",
+            subtitle: "Initiez vos enfants à la programmation",
+            item_url: "https://gomycode.tn/kids",               
+            image_url: "https://images.trueafrica.co/Go-my-code-school-at-Cogite1-2000x1333.jpg",
+            buttons: [{
+              type: "web_url",
+              url: "https://gomycode.tn/ai",
+              title: "Open Web URL"
+            },{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time#apply",
+              title: "Inscription"
+            }, {
+              type:"element_share"
+              
+            }],
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+
+/*KIDS session */
+function sendGenericMessageKidsSession(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type:"generic",
+          elements: [{
+            title: "Full Stack js ",
+            subtitle: "Deviens développeur web fullstack js",
+            item_url: "https://gomycode.tn/game",               
+            image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time",
+              title: "Open Web URL"
+            },{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time#apply",
+              title: "Inscription"
+            }, {
+              type:"element_share"
+              
+            }],
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
+}
+/*Summer session */
+
+function sendGenericMessageSummerSession(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type:"generic",
+          elements: [{
+            title: "Game",
+            subtitle: "Deviens développeur web fullstack js",
+            item_url: "https://gomycode.tn/game",               
+            image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time",
+              title: "Open Web URL"
+            },{
+              type: "web_url",
+              url: "https://gomycode.tn/full-time#apply",
+              title: "Inscription"
+            }, {
+              type:"element_share"
+              
+            }]
           }]
         }
       }
