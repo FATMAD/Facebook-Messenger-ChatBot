@@ -99,7 +99,7 @@ var request = require("request");
 config.PAGE_ACCESS_TOKEN = 'EAAEvU69VqwEBAPYcNXcz6IrtQ2jWOZAx1EnO6aSfRyDaatpwzFZBCcJbEgk6o90Svq0WfleZCh9JZCGTVG9iPvatlFU3tuexBRgLXFJUDd4zQnKshlGPNAjEbGL9qY37Wv74WCZBO0JgtoQO8prnVY1bM9T0uMs8afjKlcsWQr9F7GZAjileNZC'
 config.VALIDATION_TOKEN = 'try'
 config.APP_SECRET = 'c54bab66bd1d5d2103adb914b7b6ceab'
-config.SERVER_URL = 'https://a75433e1.ngrok.io'
+config.SERVER_URL = 'https://be2ca0b2.ngrok.io'
 //config.recastToken = '6f87654653b231f79b97d9f07f09d7b1'
 
 config.language = 'fr'
@@ -475,7 +475,7 @@ console.log("\n\n audio received :)\n\n ")
 else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
 
-   if  (quickReplyPayload=='ProgrammesPayload')
+  if  (quickReplyPayload=='ProgrammesPayload')
     {
 
       async.series([
@@ -648,7 +648,7 @@ else if (payload =='FULLTIMEProgramSessionsPayload'){
    async.series([
         function(callback){
 
-            sendTextMessage(senderID, "IL y a trois sessions ");
+            sendTextMessage(senderID, "IL y a trois sessions Full time ");
 
 
                     setTimeout(function(){
@@ -872,9 +872,65 @@ else  if (payload == 'InvestisseurPayload'){
           console.log(results);
         });
 } 
+/*SESSION19*FULL TIME */
+else if  (payload == 'Sessions19Payload'){
+  
+   async.series([
+        function(callback){
 
-/*PriseRendezVous Partenariat*/
-else if  (payload == 'PartenariatPayload'){
+            sendTextMessage(senderID, "session full time sont : ");
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          },function(callback){
+
+            callSessionAPI(senderID,19);
+            
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          }
+        
+        ], function(error, results) {
+          console.log(results);
+        });
+ } 
+/*SESSION PART TIME 20*/
+else if  (payload =='Sessions20Payload'){
+   async.series([
+        function(callback){
+
+            sendTextMessage(senderID, "Quel est ton numéro de téléphone ?");
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          }, function(callback){
+
+             callSessionAPI(senderID,20);
+
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          }
+  
+
+        ], function(error, results) {
+          console.log(results);
+        });
+ } 
+ /*SESSION KIDS 21*/
+ else if  (payload == 'Sessions21Payload'){
    async.series([
         function(callback){
 
@@ -886,13 +942,53 @@ else if  (payload == 'PartenariatPayload'){
                 }, 1000);
 
           },
+        function(callback){
+
+           callSessionAPI(senderID,21);
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          }
         
 
         ], function(error, results) {
           console.log(results);
         });
- }           
-  
+ } 
+/*SESSION SUMMER 18*/
+else if  (payload == 'Sessions18Payload'){
+      async.series([
+        function(callback){
+
+            sendTextMessage(senderID, "les sessions summer ");
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          },
+        function(callback){
+
+          callSessionAPI(senderID,18);
+
+
+                    setTimeout(function(){
+                    callback(null, 1);
+                }, 1000);
+
+          }
+        
+
+        ], function(error, results) {
+          console.log(results);
+        });
+ }  
+
+/*PriseRendezVous Partenariat*/  
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
   //sendTextMessage(senderID, "Postback called");
@@ -1182,9 +1278,9 @@ function sendGenericMessagePrograms(recipientId) {
         }
       }
     }
-  };  
+     };  
 
-  callSendAPI(messageData);
+      callSendAPI(messageData);
 }
 /*full time session */
 function sendGenericMessageFullTime(recipientId) {
@@ -1203,6 +1299,10 @@ function sendGenericMessageFullTime(recipientId) {
             item_url: "https://gomycode.tn/game",               
             image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
             buttons: [{
+              type: "postback",
+              payload: "Sessions19Payload",
+              title: "LES SESSIONS"
+            },{
               type: "web_url",
               url: "https://gomycode.tn/full-time#apply",
               title: "Inscription"
@@ -1236,9 +1336,9 @@ function sendGenericMessagePartTime(recipientId) {
             item_url: "https://gomycode.tn/game",               
             image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
             buttons: [{
-              type: "web_url",
-              url: "https://gomycode.tn/full-time",
-              title: "Open Web URL"
+              type: "postback",
+              payload: "Sessions20Payload",
+              title: "LES SESSIONS"
             },{
               type: "web_url",
               url: "https://gomycode.tn/full-time#apply",
@@ -1325,9 +1425,9 @@ function sendGenericMessageKidsSession(recipientId) {
             item_url: "https://gomycode.tn/game",               
             image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
             buttons: [{
-              type: "web_url",
-              url: "https://gomycode.tn/full-time",
-              title: "Open Web URL"
+              type: "postback",
+              payload: "Sessions21Payload",
+              title: "LES SESSIONS"
             },{
               type: "web_url",
               url: "https://gomycode.tn/full-time#apply",
@@ -1362,9 +1462,9 @@ function sendGenericMessageSummerSession(recipientId) {
             item_url: "https://gomycode.tn/game",               
             image_url: "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAoWAAAAJGIyNDExM2IxLWI2MmMtNDk5YS05ZDUwLTRkZTcwZTA3ZTE4NQ.png",
             buttons: [{
-              type: "web_url",
-              url: "https://gomycode.tn/full-time",
-              title: "Open Web URL"
+              type: "postback",
+              payload: "Sessions18Payload",
+              title: "LES SESSIONS"
             },{
               type: "web_url",
               url: "https://gomycode.tn/full-time#apply",
@@ -1613,15 +1713,11 @@ function callSendAPI(messageData) {
 
   // console.log("\n--------------send message data-----------\n"+JSON.stringify(messageData.message.attachment.payload.text)+"\n-------------- fin send message data-----------\n");
 
+     console.log("\n--------------send message data-----------\n"+JSON.stringify(messageData)+"\n-------------- fin send message data-----------\n");
 
+     
 
-  console.log("\n--------------send message data-----------\n"+JSON.stringify(messageData)+"\n-------------- fin send message data-----------\n");
-
-
-
-        
-
-  request({
+    request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: { access_token: PAGE_ACCESS_TOKEN },
     method: 'POST',
@@ -1642,6 +1738,108 @@ function callSendAPI(messageData) {
     }
   });  
 }
+
+function callSessionAPI(recipientId,n){
+  var tab=[];
+  request({
+    uri:'https://gomycode.tn/API/SESSIONS/'+n+'/',
+    qs: { access_token: "Le Token d'accès à votre page" },
+    method: 'GET'
+
+   
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log ('hello fatma')
+      
+      console.log(response.statusCode) // 200
+      console.log(response.headers['content-type'])
+      data=JSON.parse(body)
+      console.log(data)
+    
+      for (var i=0 in data ){
+        console.log("Debut Session:"+(data[i]. start))
+        console.log("Fin Session:"+(data[i].end))
+        console.log("Session:"+(data[i].product))
+        console.log(data[i])
+        tab.push(data[i].name)
+
+      }
+      console.log(tab)
+      tab;
+      //message=message+("session:"+tab);
+      eval (console.log(tab))
+    
+    } else {
+      console.error("Unable to send message.");
+      console.error(response);
+      console.error(error);
+      tab="sorry"
+    }
+  });  
+  
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: tab,
+      //metadata: "DEVELOPER_DEFINED_METADATA"
+    }
+  };
+
+  
+}
+function callEventsAPI(){
+
+  request({
+    uri:'https://gomycode.tn/API/EVENTS',
+    qs: { access_token: "Le Token d'accès à votre page" },
+    method: 'GET'
+
+   
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log ('hello fatma')
+      
+      console.log(response.statusCode) // 200
+      console.log(response.headers['content-type'])
+      data=JSON.parse(body)
+      console.log (data)
+      var nom=data[0].name
+ 
+    } else {
+      console.error("Unable to send message.");
+      console.error(response);
+      console.error(error);
+    }
+  });  
+}
+/*API SPEAKERS */
+function callSpeakersAPI(){
+
+  request({
+    uri:'https://gomycode.tn/API/SPEAKERS',
+    qs: { access_token: "Le Token d'accès à votre page" },
+    method: 'GET'
+
+   
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log ('hello fatma')
+      
+      console.log(response.statusCode) // 200
+      console.log(response.headers['content-type'])
+      data=JSON.parse(body)
+      console.log (data)
+ 
+    } else {
+      console.error("Unable to send message.");
+      console.error(response);
+      console.error(error);
+    }
+  });  
+}
+
 
 function deletestartbutton() {
   request({
@@ -1935,6 +2133,8 @@ app.listen(app.get('port'), function() {
     deletestartbutton();
     addPersistentMenu();
     removePersistentMenu();
+    //callSessionAPI(recipientId,tab,19);
+
 });
 
 /*
